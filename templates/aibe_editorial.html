@@ -311,12 +311,11 @@ h2#references::before { display: none; }
 
 <!-- ── Cover ── -->
 <div class="cover">
-  <div class="cover-label">AI Business Expert &nbsp;·&nbsp; Internal Research Brief</div>
+  <div class="cover-label">AI Business Expert &nbsp;·&nbsp; $if(doc-type)$$doc-type$$else$Business Intelligence$endif$</div>
   <h1>$title$</h1>
   <div class="cover-rule"></div>
   <div class="cover-meta">
-    <span><strong>Date:</strong> $date$</span>
-    <span><strong>Edition:</strong> Expanded &mdash; Intelligent Automation</span>
+    <span><strong>Date:</strong> $if(date)$$date$$else$2026$endif$</span>
     <span><strong>Classification:</strong> Internal Use Only</span>
   </div>
 </div>
@@ -348,7 +347,7 @@ $body$
 
 <div class="article-footer">
   <span class="footer-logo">AI Business Expert</span>
-  <span>$date$ &nbsp;&middot;&nbsp; Internal Use Only &nbsp;&middot;&nbsp; Expanded Edition</span>
+  <span>$if(date)$$date$$else$2026$endif$ &nbsp;&middot;&nbsp; $if(doc-type)$$doc-type$$else$Business Intelligence$endif$ &nbsp;&middot;&nbsp; Internal Use Only</span>
 </div>
 
 </div>

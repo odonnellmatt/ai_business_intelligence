@@ -82,24 +82,41 @@ Recommendation: Manual editorial intervention required.
 
 ## File Format Conversions
 
-After APPROVE, run Pandoc conversions:
+After APPROVE, run the following in sequence.
+
+### Step A — DOCX Conversions (Pandoc)
+
 ```bash
-pandoc outputs/article.md -o outputs/article.html
 pandoc outputs/article.md -o outputs/article.docx
-pandoc outputs/case_study.md -o outputs/case_study.html
 pandoc outputs/case_study.md -o outputs/case_study.docx
-pandoc outputs/executive_content.md -o outputs/executive_content.html
 pandoc outputs/executive_content.md -o outputs/executive_content.docx
-pandoc outputs/internal_article.md -o outputs/internal_article.html
 pandoc outputs/internal_article.md -o outputs/internal_article.docx
 ```
 
 If Pandoc is not available:
 ```
-PANDOC NOT AVAILABLE: HTML and DOCX conversions skipped.
+PANDOC NOT AVAILABLE: DOCX conversions skipped.
 Markdown files are the authoritative outputs.
 Install Pandoc with: brew install pandoc
 ```
+
+### Step B — PDF Generation (aibe_pdf_generator)
+
+After DOCX conversions complete, invoke `aibe_pdf_generator` with the output folder path:
+
+```
+invoke aibe_pdf_generator "Articles/YYYY/MM/DD_[Topic]_N/outputs/"
+```
+
+This generates, for all four output files:
+- A styled HTML intermediate (`[basename]_styled.html`) using the editorial template
+- An executive-ready PDF (`[basename].pdf`) via Chrome headless (primary) or xelatex (fallback)
+
+`aibe_pdf_generator` saves its own `process_files/pdf_generation_report.md`.
+
+Do NOT run Pandoc HTML conversions separately — `aibe_pdf_generator` produces the canonical styled HTML intermediates as part of its process.
+
+If `aibe_pdf_generator` reports a hard failure for any file, note it in the sign-off document and flag for the article logger as a calibration signal.
 
 ## What You Produce
 
@@ -119,14 +136,15 @@ Save `outputs/final_review_signoff.md`:
 - outputs/internal_article.md ✓
 
 ## Format Conversions
-- HTML: [Completed / Skipped — Pandoc unavailable]
 - DOCX: [Completed / Skipped — Pandoc unavailable]
+- PDF: [Completed via Chrome headless / Completed via xelatex / Partially failed — see pdf_generation_report.md]
+- Styled HTML: [Completed / Partially failed]
 
 ## Editorial Notes
 [Key strengths of this run — what worked particularly well]
 
 ## Calibration Signals for Article Logger
-[Any skills that needed more retries than expected; quality issues that prior gates should have caught; recommendations for pipeline calibration]
+[Any skills that needed more retries than expected; quality issues that prior gates should have caught; PDF generation engine issues; recommendations for pipeline calibration]
 ```
 
 Save `process_files/final_review_report.md` (detailed internal version with full Gate 9 audit trail).
