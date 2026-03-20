@@ -8,6 +8,7 @@ Returns Are Real</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
   <style>
 /* ============================================================
    AIBE EDITORIAL STYLE — Executive Intelligence Report
@@ -289,16 +290,49 @@ h2#references::before { display: none; }
 }
 
 /* ── Print ── */
+
+/* First page (cover): zero margins so cover bleeds edge-to-edge */
+@page :first {
+  margin: 0;
+  size: A4;
+}
+/* All other pages: standard readable margins */
+@page {
+  margin: 1.1in 1in;
+  size: A4;
+}
+
 @media print {
-  @page { margin: 1.2in 1in; size: A4; }
   body { font-size: 10.5pt; }
-  .cover { min-height: 100vh; page-break-after: always; }
+  .cover {
+    min-height: 100vh;
+    /* Extend cover past the body padding on content pages — not needed
+       here because :first has zero margins, but kept for safety */
+    page-break-after: always;
+  }
   .stat-banner { page-break-after: always; }
   .article-body { padding: 0; max-width: none; }
   h2 { page-break-after: avoid; }
   h3 { page-break-after: avoid; }
   table, blockquote { page-break-inside: avoid; }
   a { color: var(--navy); text-decoration: none; }
+}
+
+/* ── Mermaid chart container ── */
+pre.mermaid, .mermaid {
+  background: #F8FAFC;
+  border: 1px solid #CBD5E1;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  overflow: hidden;
+  page-break-inside: avoid;
+}
+pre.mermaid svg, .mermaid svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 @media (max-width: 640px) {
@@ -683,5 +717,82 @@ Forrester TEI for UiPath.</p>
 </div>
 
 </div>
+
+<script>
+  /* ── Mermaid.js Initialisation ─────────────────────────────────────────
+     Pandoc outputs mermaid fenced blocks as <pre class="mermaid"><code>…</code></pre>.
+     Mermaid v10+ reads textContent of .mermaid elements, but only processes
+     <pre class="mermaid"> if the text is a direct child — the nested <code>
+     wrapper prevents this. We unwrap it first, then call mermaid.run().
+  ──────────────────────────────────────────────────────────────────────── */
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      /* Base colours — high-contrast on white page */
+      background:           '#F8FAFC',
+      primaryColor:         '#0F2044',   /* navy — strong fill for nodes/bars */
+      primaryTextColor:     '#FFFFFF',   /* white text on navy fills */
+      primaryBorderColor:   '#0F2044',
+      secondaryColor:       '#1D4ED8',   /* blue for secondary nodes */
+      secondaryTextColor:   '#FFFFFF',
+      secondaryBorderColor: '#1D4ED8',
+      tertiaryColor:        '#B58B35',   /* gold accent */
+      tertiaryTextColor:    '#FFFFFF',
+      tertiaryBorderColor:  '#B58B35',
+
+      /* Text and lines */
+      lineColor:            '#334155',   /* dark slate — readable on white */
+      textColor:            '#1C1C1E',
+      labelTextColor:       '#1C1C1E',
+      edgeLabelBackground:  '#F8FAFC',
+
+      /* Gantt specifics */
+      sectionBkgColor:      '#EFF6FF',   /* very light blue section band */
+      altSectionBkgColor:   '#F0FDF4',   /* very light green alt band */
+      sectionBkgColor2:     '#EFF6FF',
+      taskBkgColor:         '#0F2044',   /* navy task bars */
+      taskTextColor:        '#FFFFFF',   /* white text on task bars */
+      taskTextLightColor:   '#0F2044',   /* dark text for milestones */
+      taskBorderColor:      '#0F2044',
+      doneTaskBkgColor:     '#1D4ED8',   /* blue for completed tasks */
+      doneTaskBorderColor:  '#1D4ED8',
+      activeTaskBkgColor:   '#B58B35',   /* gold for active tasks */
+      activeTaskBorderColor:'#B58B35',
+      gridColor:            '#CBD5E1',   /* light grid lines */
+      titleColor:           '#0F2044',
+
+      /* xychart-beta */
+      xyChart: {
+        backgroundColor:  '#F8FAFC',
+        plotColorPalette: '#0F2044,#1D4ED8,#B58B35,#334155'
+      },
+
+      /* Flowchart */
+      clusterBkg:           '#EFF6FF',
+      clusterBorder:        '#1D4ED8',
+
+      fontFamily:           'Inter, Helvetica Neue, sans-serif',
+      fontSize:             '13px'
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', function () {
+    /* Unwrap <pre class="mermaid"><code>TEXT</code></pre>
+       → <pre class="mermaid">TEXT</pre>   */
+    document.querySelectorAll('pre.mermaid code').forEach(function (codeEl) {
+      var pre = codeEl.parentNode;
+      pre.textContent = codeEl.textContent;
+    });
+
+    /* Also handle any stray <div class="sourceCode"> wrappers Pandoc may add */
+    document.querySelectorAll('.sourceCode pre.mermaid').forEach(function (pre) {
+      var wrapper = pre.closest('.sourceCode');
+      if (wrapper) wrapper.replaceWith(pre);
+    });
+
+    mermaid.run({ nodes: document.querySelectorAll('pre.mermaid') });
+  });
+</script>
 </body>
 </html>
