@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:www.mckinsey.com)",
+      "WebFetch(domain:www.dhl.com)",
+      "WebFetch(domain:www.uipath.com)",
+      "WebFetch(domain:tei.forrester.com)",
+      "WebFetch(domain:newsroom.bankofamerica.com)",
+      "WebFetch(domain:www.gend.co)",
+      "WebFetch(domain:www.salesforce.com)",
+      "WebFetch(domain:www.claimsjournal.com)",
+      "WebFetch(domain:www.ibm.com)",
+      "Bash(pandoc outputs/internal_article.md -o outputs/internal_article.html)",
+      "Bash(pandoc outputs/internal_article.md -o outputs/internal_article.docx)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless=new --disable-gpu --no-sandbox --print-to-pdf=\"/Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article.pdf\" --print-to-pdf-no-header --no-pdf-header-footer --run-all-compositor-stages-before-draw --virtual-time-budget=5000 \"file:///Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article_styled.html\")",
+      "Bash(open \"/Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article.pdf\")",
+      "Bash(systemsetup -gettimezone)",
+      "Bash(xcode-select -p)",
+      "Bash(while read:*)",
+      "Bash(do touch:*)",
+      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate README.md)",
+      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate \"Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article.pdf\")"
+    ]
+  }
+}
