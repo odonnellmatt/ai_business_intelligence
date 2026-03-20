@@ -1,0 +1,400 @@
+/* ============================================================
+   AIBE EDITORIAL STYLE — Executive Intelligence Report
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap');
+
+:root {
+  --navy:       #0F2044;
+  --navy-mid:   #1B3A6B;
+  --blue:       #1D4ED8;
+  --accent:     #3B82F6;
+  --gold:       #B58B35;
+  --text:       #1C1C1E;
+  --muted:      #64748B;
+  --light:      #F8FAFC;
+  --border:     #CBD5E1;
+  --white:      #FFFFFF;
+  --rule:       #E2E8F0;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--white);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Cover Page ───────────────────────────────────────────── */
+
+.cover {
+  background: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 10%;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.08);
+  pointer-events: none;
+}
+
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: 5%;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(181, 139, 53, 0.06);
+  pointer-events: none;
+}
+
+.cover-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+
+.cover-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 2px;
+  background: var(--gold);
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
+.cover h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--white);
+  margin: 0 0 2.5rem 0;
+  max-width: 720px;
+  border: none;
+}
+
+.cover-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.cover-meta span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+}
+
+.cover-meta strong {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+
+.cover-rule {
+  width: 56px;
+  height: 3px;
+  background: var(--gold);
+  margin: 2rem 0;
+}
+
+/* ── Article Wrapper ──────────────────────────────────────── */
+
+.article-body {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 72px 40px 100px;
+}
+
+/* ── Typography ───────────────────────────────────────────── */
+
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--navy);
+  margin-top: 2.8em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+/* Article top h1 (duplicate title) — hide it, cover page handles it */
+.article-body > h1:first-child {
+  display: none;
+}
+
+h2 {
+  font-size: 1.45rem;
+  font-weight: 700;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--rule);
+  position: relative;
+}
+
+h2::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--blue);
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  color: var(--navy-mid);
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin-bottom: 1.4em;
+  color: var(--text);
+}
+
+/* Lead paragraph after h2 */
+h2 + p {
+  font-size: 1.05rem;
+  color: #374151;
+}
+
+/* Intro meta line */
+p > strong:first-child {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+a {
+  color: var(--blue);
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 3em 0;
+}
+
+/* ── Stat Callout Boxes ───────────────────────────────────── */
+
+/* Target bold-led paragraphs inside sections — wrap key stats */
+strong {
+  font-weight: 600;
+  color: var(--navy);
+}
+
+/* Pull-quote blockquotes */
+blockquote {
+  margin: 2.5em 0;
+  padding: 1.5em 2em;
+  background: var(--light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1e3a5f;
+  font-style: normal;
+}
+
+blockquote p { margin: 0; }
+
+/* ── Stat Cards — auto-detect patterns ───────────────────── */
+
+/* Section-opener emphasis for key numbers — styled via special class */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 2.5em 0;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 1.5em 1.2em;
+  text-align: center;
+}
+
+.stat-card .stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--navy);
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.3em;
+}
+
+.stat-card .stat-label {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Tables ───────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5em 0;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--border);
+}
+
+thead {
+  background: var(--navy);
+  color: var(--white);
+}
+
+th {
+  padding: 12px 16px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: rgba(255,255,255,0.85);
+}
+
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text);
+  line-height: 1.55;
+  vertical-align: top;
+}
+
+td:first-child {
+  font-weight: 600;
+  color: var(--navy-mid);
+  white-space: nowrap;
+}
+
+tr:last-child td { border-bottom: none; }
+
+tr:nth-child(even) td { background: #FAFBFD; }
+
+/* ── Lists ────────────────────────────────────────────────── */
+
+ul, ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+li {
+  margin-bottom: 0.5em;
+  line-height: 1.65;
+}
+
+ol li::marker {
+  font-weight: 600;
+  color: var(--blue);
+}
+
+/* ── References Section ───────────────────────────────────── */
+
+h2#references,
+h2:has(+ p > a) {
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── Section Divider via HR ───────────────────────────────── */
+
+hr {
+  border-top-color: var(--rule);
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+
+.article-footer {
+  margin-top: 5em;
+  padding-top: 2em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article-footer .footer-logo {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-size: 0.7rem;
+}
+
+/* ── Print / PDF ──────────────────────────────────────────── */
+
+@media print {
+  @page { margin: 1.2in 1in; }
+
+  body { font-size: 10.5pt; }
+
+  .cover {
+    min-height: 100vh;
+    page-break-after: always;
+  }
+
+  .article-body { padding: 0; }
+
+  h2 { page-break-after: avoid; }
+  h3 { page-break-after: avoid; }
+  table, blockquote { page-break-inside: avoid; }
+
+  a { color: var(--navy); text-decoration: none; }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  .article-body { padding: 40px 20px 60px; }
+  .cover { padding: 60px 6%; }
+  .cover h1 { font-size: 1.8rem; }
+}

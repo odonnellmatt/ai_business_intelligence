@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>$title$</title>
+    $for(css)$
+    <link rel="stylesheet" href="$css$" />
+    $endfor$
+</head>
+<body>
+    <div class="cover-page">
+        <div class="cover-content">
+            <div class="report-type">AI BUSINESS EXPERT</div>
+            <div class="accent-line"></div>
+            <h1 class="cover-title">$if(title)$$title$$else$Research Report$endif$</h1>
+            $if(subtitle)$
+            <p class="cover-subtitle">$subtitle$</p>
+            $endif$
+            <div class="cover-footer">
+                <p class="cover-date">$if(date)$$date$$else$20 March 2026$endif$</p>
+                <p class="cover-author">$if(author)$$author$$else$Internal Research Brief$endif$</p>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        $body$
+    </div>
+</body>
+</html>

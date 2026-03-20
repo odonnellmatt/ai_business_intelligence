@@ -21,7 +21,26 @@
       "Bash(do touch:*)",
       "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate README.md)",
       "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate \"Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article.pdf\")",
-      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate . Articles Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs .agents/skills)"
+      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate . Articles Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs .agents/skills)",
+      "WebFetch(domain:logisticsviewpoints.com)",
+      "WebFetch(domain:www.deloitte.com)",
+      "Bash(OUTPUT_DIR=\"/Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_2/outputs\")",
+      "Bash(CSS=\"/Users/matto/Projects/AI Business Expert/templates/aibe_pdf_style.css\")",
+      "Bash(MD=\"$OUTPUT_DIR/internal_article.md\")",
+      "Bash(__NEW_LINE_6878148a8970e2a1__ pandoc:*)",
+      "Bash(__NEW_LINE_23693bc1d81348cd__ pandoc:*)",
+      "Bash(python3 -c \"import weasyprint; print\\(''''weasyprint ok''''\\)\")",
+      "Bash(INPUT=\"/Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_2/outputs/internal_article.md\")",
+      "Bash(OUTPUT=\"/Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_2/outputs/internal_article.pdf\")",
+      "Bash(__NEW_LINE_061e86715cafc790__ pandoc:*)",
+      "Bash(OUTPUT=\"/Users/matto/Projects/AI Business Expert/Articles/2026/03/20_Intelligent_Automation_Wins_2/outputs/internal_article_styled.html\")",
+      "Bash(CSS=\"/Users/matto/Projects/AI Business Expert/templates/aibe_editorial.css\")",
+      "Bash(TEMPLATE=\"/Users/matto/Projects/AI Business Expert/templates/aibe_editorial.html\")",
+      "Bash(__NEW_LINE_b86b5a18bf161b4d__ pandoc:*)",
+      "Bash(__NEW_LINE_bbd77aad5bb0f920__ pandoc:*)",
+      "Read(//Users/matto/Projects/AI Business Expert/**)",
+      "Bash(__NEW_LINE_900b2c0e68bed46e__ pandoc:*)",
+      "Bash(__NEW_LINE_70b3afeaed575a29__ pandoc:*)"
     ]
   }
 }
