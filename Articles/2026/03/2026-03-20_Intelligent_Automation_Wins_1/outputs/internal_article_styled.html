@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intelligent Automation Is Delivering: What the Evidence Shows,
+What Failed Before, and What We Should Do Next</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+/* ============================================================
+   AIBE EDITORIAL STYLE — Executive Intelligence Report
+   ============================================================ */
+
+:root {
+  --navy:       #0F2044;
+  --navy-mid:   #1B3A6B;
+  --blue:       #1D4ED8;
+  --accent:     #3B82F6;
+  --gold:       #B58B35;
+  --text:       #1C1C1E;
+  --muted:      #64748B;
+  --light:      #F8FAFC;
+  --border:     #CBD5E1;
+  --white:      #FFFFFF;
+  --rule:       #E2E8F0;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { font-size: 16px; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--text);
+  background: var(--white);
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Cover Page ── */
+.cover {
+  background: var(--navy);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 10%;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: rgba(59,130,246,0.08);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; left: 5%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: rgba(181,139,53,0.06);
+  pointer-events: none;
+}
+.cover-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2.5rem;
+}
+.cover-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 2px;
+  background: var(--gold);
+  margin-right: 12px;
+  vertical-align: middle;
+}
+.cover h1 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--white);
+  margin: 0 0 2.5rem 0;
+  max-width: 720px;
+  border: none;
+  padding: 0;
+}
+.cover-meta { display: flex; flex-direction: column; gap: 0.35rem; }
+.cover-meta span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.04em;
+}
+.cover-meta strong { color: rgba(255,255,255,0.85); font-weight: 500; }
+.cover-rule {
+  width: 56px; height: 3px;
+  background: var(--gold);
+  margin: 2rem 0;
+}
+
+/* ── Stats Banner ── */
+.stat-banner {
+  background: #1B3A6B;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-cell {
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.08);
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.stat-num.gold { color: var(--gold); }
+.stat-lbl {
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+  display: block;
+}
+
+/* ── Article Body ── */
+.article-body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 72px 48px 100px;
+}
+
+/* ── Typography ── */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--navy);
+  margin-top: 2.8em;
+  margin-bottom: 0.6em;
+  line-height: 1.3;
+}
+
+/* Hide duplicate title that pandoc injects as h1 in body */
+.article-body > h1:first-of-type { display: none; }
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding-bottom: 0.5em;
+  border-bottom: 2px solid var(--rule);
+  position: relative;
+}
+h2::before {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 48px; height: 2px;
+  background: var(--blue);
+}
+h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
+  color: var(--navy-mid);
+  letter-spacing: -0.01em;
+  margin-top: 2em;
+}
+p { margin-bottom: 1.4em; }
+h2 + p { font-size: 1.05rem; color: #374151; }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+strong { font-weight: 600; color: var(--navy); }
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 3em 0;
+}
+
+/* ── Blockquote / Callout ── */
+blockquote {
+  margin: 2.5em 0;
+  padding: 1.4em 2em;
+  background: var(--light);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 8px 8px 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #1e3a5f;
+  font-style: normal;
+}
+blockquote p { margin: 0; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5em 0;
+  font-size: 0.875rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px var(--border);
+}
+thead { background: var(--navy); }
+th {
+  padding: 13px 16px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: left;
+  color: rgba(255,255,255,0.85);
+  font-family: 'Inter', sans-serif;
+}
+td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text);
+  line-height: 1.55;
+  vertical-align: top;
+}
+td:first-child {
+  font-weight: 600;
+  color: var(--navy-mid);
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #FAFBFD; }
+
+/* ── Lists ── */
+ul, ol { padding-left: 1.5em; margin-bottom: 1.5em; }
+li { margin-bottom: 0.5em; line-height: 1.65; }
+ol li::marker { font-weight: 600; color: var(--blue); }
+
+/* ── References ── */
+h2#references {
+  font-size: 0.85rem;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom-color: var(--rule);
+  margin-top: 4em;
+}
+h2#references::before { display: none; }
+
+/* ── Footer ── */
+.article-footer {
+  margin-top: 5em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.72rem;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0.02em;
+}
+.footer-logo {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy);
+  font-size: 0.68rem;
+}
+
+/* ── Print ── */
+@media print {
+  @page { margin: 1.2in 1in; size: A4; }
+  body { font-size: 10.5pt; }
+  .cover { min-height: 100vh; page-break-after: always; }
+  .stat-banner { page-break-after: always; }
+  .article-body { padding: 0; max-width: none; }
+  h2 { page-break-after: avoid; }
+  h3 { page-break-after: avoid; }
+  table, blockquote { page-break-inside: avoid; }
+  a { color: var(--navy); text-decoration: none; }
+}
+
+@media (max-width: 640px) {
+  .article-body { padding: 40px 20px 60px; }
+  .cover { padding: 60px 6%; }
+  .stat-banner { grid-template-columns: repeat(2,1fr); }
+}
+  </style>
+</head>
+<body>
+
+<!-- ── Cover ── -->
+<div class="cover">
+  <div class="cover-label">AI Business Expert &nbsp;·&nbsp; Business Intelligence</div>
+  <h1>Intelligent Automation Is Delivering: What the Evidence Shows,
+What Failed Before, and What We Should Do Next</h1>
+  <div class="cover-rule"></div>
+  <div class="cover-meta">
+    <span><strong>Date:</strong> 20 March 2026</span>
+    <span><strong>Classification:</strong> Internal Use Only</span>
+  </div>
+</div>
+
+<!-- ── Stats Banner ── -->
+<div class="stat-banner">
+  <div class="stat-cell">
+    <span class="stat-num">88%</span>
+    <span class="stat-lbl">of orgs deploy AI<br>in at least one function</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num gold">6%</span>
+    <span class="stat-lbl">can attribute &gt;5%<br>of EBIT to AI</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num">3&times;</span>
+    <span class="stat-lbl">more likely to succeed<br>with process redesign first</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num gold">40%</span>
+    <span class="stat-lbl">of enterprise apps with<br>embedded AI agents by 2026</span>
+  </div>
+</div>
+
+<!-- ── Article Body ── -->
+<div class="article-body">
+
+<h1
+id="intelligent-automation-is-delivering-what-the-evidence-shows-what-failed-before-and-what-we-should-do-next">Intelligent
+Automation Is Delivering: What the Evidence Shows, What Failed Before,
+and What We Should Do Next</h1>
+<p><strong>Version A — With Citations | Internal Circulation</strong>
+<strong>Date</strong>: March 2026</p>
+<hr />
+<h2 id="section-1-why-this-topic-now">Section 1: Why This Topic Now</h2>
+<p>Deloitte automated 600 internal processes using UiPath and recovered
+more than four million cumulative labour hours (UiPath, 2024). That is
+not a projection — it is a documented outcome from a professional
+services firm that applied intelligent automation to its own operations
+before recommending it to clients. When Deloitte treats its own
+workforce as the test case, the results are worth examining closely.</p>
+<p>This briefing sets out the evidence on intelligent automation across
+six industries from 2024 to 2026: what specific problems existed before
+automation was introduced, what tools solved them, and what measurable
+results followed. It also documents what failed, and why — because the
+95% of enterprise generative AI pilots that failed to deliver P&amp;L
+impact (MIT study, as reported by Fortune, 2025) failed for reasons that
+are entirely preventable.</p>
+<p>The final section identifies specific opportunities for our teams, by
+function, with named tools, verified outcomes, and concrete first
+steps.</p>
+<hr />
+<h2 id="section-2-the-before-what-problems-were-costing-us">Section 2:
+The Before — What Problems Were Costing Us</h2>
+<p>The problems intelligent automation is solving were not abstract
+inefficiencies. They were specific, measurable, and chronic.</p>
+<p><strong>JPMorgan Chase’s legal team reviewed 12,000 commercial credit
+agreements per year entirely by hand.</strong> The task consumed
+approximately 360,000 hours of legal staff time annually (ABA Journal,
+2023). The error rate was material: minor misinterpretations in contract
+parsing generated downstream loan-servicing mistakes. This was not a
+niche problem — it was a core operational function of one of the world’s
+largest financial institutions, and it was running on human capacity
+alone.</p>
+<p><strong>Allianz Australia’s food spoilage claims took seven days to
+process.</strong> Claims under AUD 500 — representing a significant
+portion of volume, requiring no substantive human judgement — were
+queued, manually extracted, entered into systems, validated against
+policy terms, and approved by staff. The same person doing this work
+could have been doing something that required their actual expertise.
+Instead, they were doing data entry (Allianz Media Centre, 2025).</p>
+<p><strong>Wells Fargo’s service centre handled routine queries —
+password resets, balance enquiries, product questions — through human
+agents.</strong> In 2023, the Fargo virtual assistant managed 21.3
+million such interactions. Those same interactions, previously handled
+by human staff, represented an enormous and completely automatable cost
+base (VentureBeat, 2025).</p>
+<p><strong>Siemens engineers spent multiple days creating panel
+visualisations for industrial automation code.</strong> This was skilled
+engineering time consumed by a task that required precision but not
+creative judgement — the ideal profile for automation. In high-volume
+manufacturing environments, this was a systematic bottleneck across
+every project (Siemens Press, 2025).</p>
+<p><strong>Asia’s largest insurance company — with 20,000 agents — had
+manual workflows spanning HR, finance operations, reporting, partner
+distribution, compliance, and agency departments.</strong> The processes
+were high-volume, repetitive, and error-prone. There was no shortage of
+human effort; there was a shortage of human effort applied to work that
+actually required it (Automation Anywhere, 2024).</p>
+<p>These examples share a pattern. The problem was not that the
+organisations lacked capable people. The problem was that capable people
+were trapped in work designed for rules and repetition, not judgement
+and expertise. Intelligent automation’s primary contribution is not
+replacing people — it is releasing them from work that machines can do
+more reliably.</p>
+<hr />
+<h2
+id="section-3-the-solutions-named-tools-specific-deployments">Section 3:
+The Solutions — Named Tools, Specific Deployments</h2>
+<p>The following implementations are documented, sourced, and represent
+the strongest available evidence from 2024–2026.</p>
+<h3 id="financial-services">Financial Services</h3>
+<p><strong>JPMorgan Chase — COiN (Contract Intelligence)</strong>: A
+natural language processing system using unsupervised machine learning,
+now processing 12,000 commercial credit agreements per year with
+near-zero error rates. The 360,000 hours of annual legal review the
+system replaced have not been eliminated — legal staff now work on the
+claims and disputes the system cannot resolve (ABA Journal, 2023).</p>
+<p><strong>Bank of America — AI Coding Tools + Erica for
+Employees</strong>: GitHub Copilot-equivalent AI coding tools deployed
+to 17,000 developers reduced coding work by 30% — the equivalent of
+approximately 2,000 people’s capacity freed for higher-value software
+work. More than 210,000 associates now use Erica for Employees for
+administrative tasks (CIO Dive, 2025).</p>
+<p><strong>BBVA — ChatGPT Enterprise (OpenAI)</strong>: Rolled out to
+all 120,000 employees. The legal division automated 9,000+ routine
+queries per year, freeing three full-time equivalents who now produce
+11,000+ documents annually. Organisation-wide, the average saving is 2.8
+hours per week per employee. The bank’s teams built 20,000+ Custom GPTs
+internally for specific workflow applications (OpenAI, 2025).</p>
+<p><strong>Wells Fargo — Fargo (Google Gemini 2.0 Flash)</strong>: 245
+million interactions in 2024, up from 21.3 million in 2023. Deployed to
+180,000+ desktops. The system handles routine queries, freeing service
+staff for complex cases (VentureBeat, 2025).</p>
+<h3 id="insurance">Insurance</h3>
+<p><strong>Allianz — Layered Automation Across Markets</strong>: Project
+Nemo (Australia) reduced food spoilage claims processing from seven days
+to under one day. The pet insurance agentic AI in Germany — the
+company’s first agentic deployment — now fully processes 49.7% of
+claims, with simple claims paid within hours. The Incognito fraud
+detection system achieved a 29% increase in fraud identification
+(Allianz Media Centre, 2025).</p>
+<p><strong>Automation Anywhere — Asia’s Largest Insurer</strong>: 80% of
+manual processes automated across six departments. Turn-around time
+reduced by 50%. Error rate on automated workflows: zero. The same
+organisation that previously consumed enormous staff time on data entry
+now directs that capacity to client relationship management and complex
+case resolution (Automation Anywhere, 2024).</p>
+<p><strong>Prudential — MedLM + MedScreen Plus</strong>: Google’s MedLM
+large language model, deployed via Vertex AI, powers straight-through
+processing for claims and an automated underwriting tool in Hong Kong.
+Underwriting speed improved by 50%. A separate machine learning engine
+for policy lapse prediction reduced lapse rates by 35% in affected
+segments (Computer Weekly, 2025).</p>
+<h3 id="manufacturing">Manufacturing</h3>
+<p><strong>Siemens Industrial Copilot (100+ customers, built on Azure
+OpenAI Service)</strong>: Panel visualisations created in 30 seconds
+versus multiple days previously. Generated automation code requires only
+20% human adaptation. A pilot across customer installations demonstrated
+a 25% reduction in reactive maintenance time. Deployed to Thyssenkrupp
+Automation Engineering for global rollout from 2025 (Siemens Press,
+2025).</p>
+<p><strong>Procter &amp; Gamble — AI Demand Forecasting</strong>:
+AI-based demand sensing reduced forecast errors by 30%, delivered a 20%
+improvement in on-time delivery, and contributed to an estimated USD 300
+million in inventory cost savings (McKinsey-referenced case
+analysis).</p>
+<h3 id="logistics-and-supply-chain">Logistics and Supply Chain</h3>
+<p><strong>UPS — ORION</strong>: Machine learning route optimisation
+eliminates 100 million delivery miles per year — saving 10 million
+gallons of fuel and generating approximately USD 300–400 million in
+annual cost savings.</p>
+<p><strong>DHL — AI Orchestration (USD 700 million investment,
+2024)</strong>: 35% warehouse productivity increase, 99.7% order
+accuracy, 60% faster integration implementation across facilities (DHL,
+2024).</p>
+<p><strong>Walmart — Self-Healing Inventory + Pactum AI</strong>: USD 55
+million saved through agentic inventory self-correction. Pactum AI’s
+automated supplier negotiation system secured agreements with 68% of
+suppliers approached at a 1.5% cost reduction. Shift scheduling reduced
+from 90 minutes to 30 minutes per manager per week (Logistics
+Viewpoints, 2025).</p>
+<p><strong>Amazon — Wellspring + AI Forecasting Model</strong>: 40%+
+improvement in optimal inventory placement year-on-year. Same-day
+delivery network expanded 60% in FY2024 (Supply Chain Dive, 2025).</p>
+<h3 id="healthcare">Healthcare</h3>
+<p><strong>Mayo Clinic — 34 Virtual Workers</strong>: Revenue cycle
+tasks — claims submission, coding, denial management — previously
+handled manually are now managed by 34 AI-powered virtual workers. Human
+staff redirected to complex denial resolution and payer negotiation.</p>
+<p><strong>Cleveland Clinic — Aidoc DeepCertainty</strong>: AI-assisted
+detection for fractures, lung nodules, and stroke integrated into
+radiology workflows at a scale that matches the volume demands
+individual radiologists cannot sustain.</p>
+<p><strong>Enterprise-Wide</strong>: Microsoft Power Automate —
+Forrester’s independent 2024 Total Economic Impact study found a
+three-year ROI of 248%, an NPV of USD 39.85 million, and a payback
+period of under six months for a composite enterprise deployment
+(Forrester/Microsoft, 2024). Microsoft 365 Copilot at Vodafone saves 3
+hours per employee per week; at the Commercial Bank of Dubai, 39,000
+hours per year (Microsoft/Forrester, 2024).</p>
+<hr />
+<h2 id="section-4-the-honest-picture-why-most-pilots-fail">Section 4:
+The Honest Picture — Why Most Pilots Fail</h2>
+<p>The failure rate demands attention. MIT research, reported by Fortune
+in August 2025, found that 95% of enterprise generative AI pilots fail
+to deliver measurable P&amp;L impact. Gartner predicts over 40% of
+agentic AI projects will be cancelled by end of 2027 due to escalating
+costs, unclear business value, or inadequate risk controls (Gartner,
+June 2025). And 42% of companies scrapped most AI initiatives in 2025 —
+up from 17% in 2024.</p>
+<p>The failures are not random. They cluster around three causes:</p>
+<p><strong>1. Data quality.</strong> 77% of organisations rate their
+data as average, poor, or very poor for AI readiness (AIIM 2024). HFS
+Research estimates the Global 2000 carry USD 1.5–2 trillion in
+accumulated technical debt, with fragmented data identified as the
+primary cause of AI project failure (HFS Research/Publicis Sapient,
+2025). Automation cannot function reliably on data it cannot read. The
+organisations that deployed successfully — Allianz, JPMorgan, Deloitte —
+all had structured, consistent, machine-readable data in the processes
+they automated first.</p>
+<p><strong>2. Legacy integration complexity.</strong> 41% of enterprise
+leaders report difficulty integrating AI with legacy systems (HFS
+Research, 2025). Organisations that layer automation onto brittle legacy
+infrastructure often accelerate dysfunction rather than resolve it. The
+Allianz case is instructive: it started with claims types that had
+clean, structured inputs and bounded logic — not with its most complex
+processes.</p>
+<p><strong>3. Absent governance.</strong> Only one in five companies has
+a mature governance model for autonomous AI agents (McKinsey, 2025).
+Without documented decision audit trails, human escalation pathways, and
+exception-handling protocols, automation failures become compliance and
+reputational events rather than technical problems to fix.</p>
+<p>The organisations in McKinsey’s “high performer” category — the 6%
+attributing more than 5% EBIT improvement to AI — are 3.6 times more
+likely to pursue enterprise-level transformation and are 55% more likely
+to fundamentally redesign workflows rather than automate existing ones.
+The discipline is in the design, not the tool.</p>
+<hr />
+<h2 id="section-5-application-by-function">Section 5: Application by
+Function</h2>
+<pre class="mermaid"><code>xychart-beta
+    title &quot;Intelligent Automation ROI by Platform (3-Year, Forrester TEI Studies)&quot;
+    x-axis [&quot;Power Automate&quot;, &quot;UiPath&quot;, &quot;ServiceNow\n(Healthcare)&quot;, &quot;Copilot (SMB)&quot;]
+    y-axis &quot;ROI (%)&quot; 0 --&gt; 400
+    bar [248, 97, 310, 353]</code></pre>
+<p><em>Source: Forrester Consulting TEI studies (Microsoft 2024, UiPath
+2024, ServiceNow 2024/2025). ROI = net present value over 3 years as a
+percentage of investment.</em></p>
+<p>The following identifies where intelligent automation delivers the
+clearest, fastest return for each organisational function, with a named
+tool, a verified outcome from a peer organisation, and a concrete first
+step our team can take.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Function</th>
+<th>AI Tool</th>
+<th>Verified Outcome</th>
+<th>First Step</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Legal / Compliance</td>
+<td>JPMorgan COiN (NLP/ML) OR IBM watsonx.governance</td>
+<td>360,000 legal hours/year saved (JPMorgan); 50% compliance review
+cycle reduction (IBM watsonx.governance, top-10 US bank)</td>
+<td>Map all routine contract review and compliance query volume in the
+past 12 months; identify the highest-volume, most repetitive document
+types</td>
+</tr>
+<tr>
+<td>Finance / Accounts Payable</td>
+<td>Microsoft Power Automate OR UiPath</td>
+<td>248% ROI over 3 years; &lt;6-month payback (Forrester/Microsoft,
+2024); 4M+ hours saved at Deloitte</td>
+<td>Audit the five most manual invoice processing or reconciliation
+steps; assess data quality and structure of source records</td>
+</tr>
+<tr>
+<td>Customer Service / CX</td>
+<td>Salesforce Agentforce OR Wells Fargo–style LLM assistant</td>
+<td>70% of chat engagements resolved autonomously (1-800Accountant via
+Salesforce Agentforce); 245 million interactions handled (Wells Fargo
+Fargo in 2024)</td>
+<td>Categorise the top 20 most common inbound customer queries; identify
+which require human judgement and which are information retrieval
+only</td>
+</tr>
+<tr>
+<td>HR / People Operations</td>
+<td>Automation Anywhere OR ServiceNow AI</td>
+<td>80% of HR manual processes automated; 50% turn-around reduction
+(Asia’s largest insurer)</td>
+<td>Review onboarding, offboarding, and leave request workflows for
+manual data entry steps that could be automated</td>
+</tr>
+<tr>
+<td>Supply Chain / Procurement</td>
+<td>Pactum AI (supplier negotiations) OR Microsoft Power Automate</td>
+<td>68% supplier agreement rate; 1.5% cost reduction (Walmart/Pactum AI,
+2025)</td>
+<td>Identify supplier negotiation volume and manual procurement approval
+workflows; assess whether supplier data is structured for AI
+ingestion</td>
+</tr>
+<tr>
+<td>Marketing / Sales Intelligence</td>
+<td>Salesforce Einstein OR Microsoft 365 Copilot</td>
+<td>3 hours/week per employee saved (Vodafone, Microsoft 365 Copilot);
+CRM activity automation reduces manual entry</td>
+<td>Audit time spent on CRM data entry, campaign reporting, and
+performance analysis; establish a baseline hours figure for the
+team</td>
+</tr>
+<tr>
+<td>IT Operations</td>
+<td>ServiceNow AI Platform OR IBM watsonx Orchestrate</td>
+<td>310% ROI over 3 years for healthcare provider; manufacturing
+customer: USD 4.7M 5-year NPV (ServiceNow)</td>
+<td>Map incident ticket volume by category; identify which categories
+are repetitive and self-resolvable with AI-assisted routing</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="section-6-the-transition-underway-agentic-ai">Section 6: The
+Transition Underway — Agentic AI</h2>
+<p>The evidence points to a structural shift that will reshape
+automation strategy in 2026 and beyond: the move from rules-based RPA to
+agentic AI.</p>
+<p>Traditional RPA executes a defined sequence of steps. It follows a
+script. Agentic AI can plan, reason, and act across multiple steps —
+handling variability in inputs and adapting its approach based on
+context. Allianz’s pet insurance AI is agentic: it does not just follow
+a decision tree; it reasons over claim inputs and makes structured
+judgements. Salesforce Agentforce at 1-800Accountant resolved 70% of
+chat engagements autonomously during tax week 2025 — a period of high
+complexity and volume variation that rule-based automation could not
+have managed (Salesforce, 2025).</p>
+<p>KPMG’s Q4 2025 AI Pulse found that the proportion of enterprises
+actively deploying AI agents more than doubled — from 11% to 26% —
+between Q1 and Q4 2025 (KPMG, 2025). McKinsey reports 23% of enterprises
+are now scaling AI agents in at least one function, up from near-zero in
+2023.</p>
+<p>For our planning purposes, the practical implication is sequencing:
+prove value with rules-based automation first, establish data quality
+and governance infrastructure, then extend to agentic AI for the
+processes requiring variable reasoning. The companies that attempted
+agentic AI before their data foundations were solid are contributing to
+Gartner’s 40% cancellation forecast.</p>
+<hr />
+<h2 id="section-7-suggested-internal-next-steps">Section 7: Suggested
+Internal Next Steps</h2>
+<p>The following actions are specific enough to assign directly to named
+owners:</p>
+<ol type="1">
+<li><p><strong>CFO / Finance Director</strong>: Commission a data
+quality audit of our three highest-volume finance processes (invoice
+approval, reconciliation, compliance reporting). Assign to the Head of
+Finance Operations with a 30-day deadline. This is the prerequisite for
+any Power Automate or UiPath deployment — data quality must be assessed
+before tool selection.</p></li>
+<li><p><strong>Head of IT / CIO</strong>: Evaluate Microsoft Power
+Automate against our existing Microsoft 365 infrastructure. Forrester’s
+independent study (2024) reported 248% ROI and under 6-month payback for
+composite enterprise deployments. Given our existing Microsoft
+licensing, this is the lowest-integration-complexity entry point.
+Deliver a deployment recommendation within 60 days.</p></li>
+<li><p><strong>Head of Customer Experience / COO</strong>: Categorise
+our top 20 inbound customer service query types by volume and
+complexity. Identify which are information retrieval (automatable)
+versus judgement-based (not automatable yet). This is the scoping
+exercise that precedes any CX automation investment. Assign to CX Ops
+lead within the next sprint.</p></li>
+<li><p><strong>General Counsel / Head of Legal</strong>: Map annual
+routine legal query volume and identify the document review types with
+the highest repetition. Review IBM watsonx.governance and the JPMorgan
+COiN model for applicability. Even a partial automation of routine
+queries — as BBVA demonstrated — creates capacity for higher-value work
+without headcount reduction.</p></li>
+<li><p><strong>Chief People Officer / HR Director</strong>: Identify our
+three most manual HR workflows (likely: onboarding, offboarding, leave
+and absence management). These are the first candidates for Automation
+Anywhere or ServiceNow AI. Begin with the process that has the most
+structured, consistent data — that is where automation delivers
+fastest.</p></li>
+</ol>
+<p>The organisations achieving 5%+ EBIT improvement from AI did not
+begin with a strategy document. They began with a specific process, a
+specific tool, a 90-day proof-of-value window, and a KPI they tracked
+from day one. That approach is available to us now.</p>
+<hr />
+<h2 id="references">References</h2>
+<p>ABA Journal. (2023). <em>JPMorgan Chase uses tech to save 360,000
+hours of annual work</em>.
+https://www.abajournal.com/news/article/jpmorgan_chase_uses_tech_to_save_360000_hours_of_annual_work_by_lawyers_and</p>
+<p>Accenture. (2024). <em>New Accenture research finds that companies
+with AI-led processes outperform peers</em>. Accenture Newsroom.
+https://newsroom.accenture.com/news/2024/new-accenture-research-finds-that-companies-with-ai-led-processes-outperform-peers</p>
+<p>Allianz Group. (2025, February 5). <em>Smarter claims management,
+smoother settlements</em>. Allianz Media Centre.
+https://www.allianz.com/en/mediacenter/news/articles/250205-smarter-claims-management-smoother-settlements.html</p>
+<p>Allianz Group. (2025, November 3). <em>Allianz launched its first
+agentic AI to automate claims</em>. Allianz Media Centre.
+https://www.allianz.com/en/mediacenter/news/articles/251103-when-the-storm-clears-so-should-the-claim-queue.html</p>
+<p>Automation Anywhere. (2024). <em>Asia’s largest insurance company
+case study</em>. Automation Anywhere Customer Stories.
+https://www.automationanywhere.com/resources/customer-stories/asia-largest-insurance-company</p>
+<p>CIO Dive. (2025). <em>Bank of America touts AI gains amid
+industrywide adoption push</em>.
+https://www.ciodive.com/news/bank-of-america-ai-gains-bny-goldman-sachs-wells-fargo/753264/</p>
+<p>Computer Weekly. (2025). <em>Prudential taps AI to improve health
+insurance experience</em>.
+https://www.computerweekly.com/news/366614496/Prudential-taps-AI-to-improve-health-insurance-experience</p>
+<p>DHL. (2024). <em>DHL supply chain continues to innovate with
+orchestration, robotics, and AI in 2024</em>. DHL Press Archive.
+https://www.dhl.com/us-en/home/press/press-archive/2024/dhl-supply-chain-continues-to-innovate-with-orchestration-robotics-and-ai-in-2024.html</p>
+<p>Forrester Consulting. (2024, July). <em>The total economic impact™ of
+Microsoft Power Automate</em>. Commissioned by Microsoft.
+https://info.microsoft.com/ww-landing-2024-The-Total-Economic-Impact-of-Power-Platform.html</p>
+<p>Gartner. (2025, June 25). <em>Gartner predicts over 40% of agentic AI
+projects will be canceled by end of 2027</em>. Gartner Newsroom.
+https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027</p>
+<p>HFS Research &amp; Publicis Sapient. (2025, May). <em>Smash through
+tech debt: Why AI is the jackhammer</em>.
+https://www.publicissapient.com/resources/research/hfs-ai-tech-debt</p>
+<p>KPMG US. (2025, Q4). <em>AI at scale: How 2025 set the stage for
+agent-driven enterprise reinvention in 2026</em>.
+https://kpmg.com/us/en/media/news/q4-ai-pulse.html</p>
+<p>Logistics Viewpoints. (2025, March 19). <em>Walmart and the new
+supply chain reality: AI, automation, and resilience</em>.
+https://logisticsviewpoints.com/2025/03/19/walmart-and-the-new-supply-chain-reality-ai-automation-and-resilience/</p>
+<p>McKinsey &amp; Company. (2025, November). <em>The state of AI in
+2025: Agents, innovation, and transformation</em>. McKinsey
+QuantumBlack.
+https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai</p>
+<p>Microsoft. (2024, October 17). <em>Microsoft 365 Copilot drove up to
+353% ROI for small and medium businesses</em>. Microsoft 365 Blog.
+https://www.microsoft.com/en-us/microsoft-365/blog/2024/10/17/microsoft-365-copilot-drove-up-to-353-roi-for-small-and-medium-businesses-new-study/</p>
+<p>MIT study as reported by Fortune. (2025, August 18). <em>MIT report:
+95% of generative AI pilots at companies are failing</em>. Fortune.
+https://fortune.com/2025/08/18/mit-report-95-percent-generative-ai-pilots-at-companies-failing-cfo/</p>
+<p>OpenAI. (2025). <em>From pilot to practice: How BBVA is scaling AI
+across the organisation</em>. OpenAI Customer Stories.
+https://openai.com/index/bbva-2025/</p>
+<p>PwC. (2025, June). <em>2025 global AI jobs barometer</em>.
+https://www.pwchk.com/en/press-room/press-releases/pr-130625.html</p>
+<p>Salesforce. (2025). <em>Agentforce customer success stories</em>.
+Salesforce.</p>
+<p>ServiceNow. (2025). <em>Enterprise AI maturity index 2025</em>.
+ServiceNow White Paper.
+https://www.servicenow.com/content/dam/servicenow-assets/public/en-us/doc-type/resource-center/white-paper/wp-enterprise-ai-maturity-index-2025.pdf</p>
+<p>Siemens AG. (2025). <em>Siemens expands Industrial Copilot with new
+generative AI-powered maintenance offering</em>. Siemens Press.
+https://press.siemens.com/global/en/pressrelease/siemens-expands-industrial-copilot-new-generative-ai-powered-maintenance-offering</p>
+<p>Supply Chain Dive. (2025). <em>Amazon touts AI upgrades for
+forecasting, deliveries and robotics</em>.
+https://www.supplychaindive.com/news/amazon-ai-supply-chain-usage-upgrades/750713/</p>
+<p>UiPath. (2024). <em>Deloitte automation case study</em>. Referenced
+in Forrester TEI for UiPath.
+https://roboticsai.co.uk/wp-content/uploads/2024/02/Forrester-The-Total-Economic-Impact%E2%84%A2-of-UiPath-Automation-Report-1.pdf</p>
+<p>VentureBeat. (2025). <em>Wells Fargo’s AI assistant just crossed 245
+million interactions</em>.
+https://venturebeat.com/ai/wells-fargos-ai-assistant-just-crossed-245-million-interactions-with-zero-humans-in-the-loop-and-zero-pii-to-the-llm</p>
+<hr />
+
+<div class="article-footer">
+  <span class="footer-logo">AI Business Expert</span>
+  <span>20 March
+2026 &nbsp;&middot;&nbsp; Business Intelligence &nbsp;&middot;&nbsp; Internal Use Only</span>
+</div>
+
+</div>
+</body>
+</html>

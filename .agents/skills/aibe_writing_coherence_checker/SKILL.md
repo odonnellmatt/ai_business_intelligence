@@ -9,6 +9,8 @@ You are Gate 6. You perform a cross-output coherence check before graphics are a
 - `outputs/executive_content.md`
 - `outputs/internal_article.md`
 - `process_files/research_summary.md`
+- `process_files/alignment_precheck.md` (for OMIT flag compliance check)
+- `process_files/alignment_fullcheck.md` (for OMIT flag compliance check)
 - Any prior feedback briefs (if re-verification)
 
 ## Coherence Checks

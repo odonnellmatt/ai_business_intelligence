@@ -1,7 +1,7 @@
 # AI Business Expert (AIBE) — Claude Code Instructions
 
 ## What This Pipeline Does
-The AI Business Expert pipeline transforms a single research prompt into three world-class business intelligence outputs plus four executive-context variants. Every output is evidence-based, specifically sourced, and written for business leaders who are actively evaluating AI adoption.
+The AI Business Expert pipeline transforms a single research prompt into four world-class business intelligence outputs. Every output is evidence-based, specifically sourced, and written for business leaders who are actively evaluating AI adoption.
 
 ## How to Run the Pipeline
 Invoke `aibe_orchestrator` with your research topic. Example prompts:
@@ -30,7 +30,8 @@ All outputs use Australian English (organisation, colour, realise, programme, et
 - `article.md` — HBR/McKinsey-style business article (600–900 words)
 - `case_study.md` — Deep-dive case study with implementation specifics
 - `executive_content.md` — Four executive variants (C-Suite Brief, Implementation Roadmap, Board Report, Team Update)
-- HTML and DOCX conversions via Pandoc (if available)
+- `internal_article.md` — Internal circulation article with Application by Function section (700–1,000 words)
+- DOCX conversions via Pandoc + styled HTML and PDF via Chrome headless (if available)
 
 ## Process Files (in Articles/YYYY/MM/DD_[Topic]_N/process_files/)
 All intermediate research, analysis, verification, and feedback documents.

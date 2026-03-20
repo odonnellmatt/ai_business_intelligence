@@ -1,6 +1,6 @@
 # 🧠 AI Business Expert (AIBE)
 
-> A **25-skill, 9-phase, 9-gate** multi-agent pipeline that transforms a single research prompt into world-class business intelligence on AI adoption — evidence-based, source-verified, and written for leaders who need to act.
+> A **25-skill, 9-phase, 10-gate** multi-agent pipeline that transforms a single research prompt into world-class business intelligence on AI adoption — evidence-based, source-verified, and written for leaders who need to act.
 
 ---
 
@@ -48,7 +48,7 @@ Before any research begins, the pipeline reads a persistent history log of all p
 
 ## 🗺️ Pipeline Architecture
 
-The pipeline runs across **9 phases** with **25 specialised skills** and **9 quality gates**.
+The pipeline runs across **9 phases** with **25 specialised skills** and **10 quality gates**.
 
 ```
 Phase 0    →  🧭 Institutional memory pre-check
@@ -60,7 +60,7 @@ Phase 4.5  →  📂 Reference context ingestion (client materials)
 Phase 5    →  ✍️  Writing engine (4 writers: article, case study, executive, internal)  [Gate 5]
 Phase 5.5  →  🔀 Pre-graphics coherence check  [Gate 6]
 Phase 6    →  🎨 Enhancement & editorial (graphics, fact-check, plagiarism)  [Gates 7 & 8]
-Phase 7    →  🏁 Final delivery (review, conversion, PDF, logging)  [Gate 9]
+Phase 7    →  🏁 Final delivery (review, conversion, PDF, PDF verification, logging)  [Gates 9 & 10]
 ```
 
 ### 🚦 Quality Gate Summary
@@ -76,6 +76,7 @@ Phase 7    →  🏁 Final delivery (review, conversion, PDF, logging)  [Gate 9]
 | 7 | ✅ Article Verifier | Fact-check, 61 banned phrases, APA citations, Australian English |
 | 8 | 🔏 Plagiarism Checker | Verbatim reproduction, over-reliance on single sources |
 | 9 | 🏁 Final Reviewer | Holistic editorial, voice authority, quality grade (A+–F) |
+| 10 | 🖨️ PDF Verifier | File integrity, cover page, section completeness, chart rendering |
 
 ---
 
@@ -83,129 +84,111 @@ Phase 7    →  🏁 Final delivery (review, conversion, PDF, logging)  [Gate 9]
 
 ```mermaid
 flowchart TD
-    PROMPT([Research Prompt]) --> LOGGER_R
+    PROMPT(["✨ Research Prompt"]) --> LOGGER_R
 
-    subgraph PHASE0["⏮ Phase 0 — Institutional Memory"]
-        LOGGER_R[Article Logger\nREAD mode]
+    subgraph PHASE0 ["Phase 0 — Memory"]
+        LOGGER_R("🔍 Article Logger (READ)")
     end
 
     LOGGER_R --> DIR_MGR
 
-    subgraph PHASE1["🏗️ Phase 1 — Infrastructure & Research"]
-        DIR_MGR[Directory Manager]
-        DIR_MGR --> RESEARCHER
-        RESEARCHER[Researcher\n≥15 sources]
-        RESEARCHER --> SRC_VFY
-        SRC_VFY{Gate 1\nSource Verifier}
+    subgraph PHASE1 ["Phase 1 — Research Engine"]
+        DIR_MGR("📁 Directory Manager") --> RESEARCHER
+        RESEARCHER("🌐 Researcher (≥15 sources)") --> SRC_VFY
+        SRC_VFY{"Gate 1: Source Verifier"}
         SRC_VFY -->|PASS| SUMMARISER
-        SRC_VFY -->|REJECT ≤3x| RESEARCHER
-        SUMMARISER[Summariser]
+        SRC_VFY -.->|REJECT ≤3x| RESEARCHER
+        SUMMARISER("📝 Summariser")
     end
 
     SUMMARISER --> ALIGN1
 
-    subgraph PHASE2["🎯 Phase 2 — Pre-Analysis Alignment"]
-        ALIGN1{Gate 2\nAlignment Verifier\nMode 1}
-        ALIGN1 -->|OMIT flags| ANALYSTS
-        ALIGN1 -->|REJECT ≤3x| SUMMARISER
+    subgraph PHASE2 ["Phase 2 — Alignment"]
+        ALIGN1{"Gate 2: Alignment (Mode 1)"}
+        ALIGN1 -->|OMIT flags| AI_APP
+        ALIGN1 -->|OMIT flags| IND_ANA
+        ALIGN1 -.->|REJECT ≤3x| SUMMARISER
     end
 
-    ANALYSTS --> AI_APP
-    ANALYSTS --> IND_ANA
-
-    subgraph PHASE3["🔬 Phase 3 — Analysis Engine"]
-        ANALYSTS[ ]:::invisible
-        AI_APP[AI Applications\nAnalyst]
-        IND_ANA[Industry\nAnalyst]
-        AI_APP --> BIZ_CASE
-        IND_ANA --> BIZ_CASE
-        BIZ_CASE[Business Case\nAnalyst]
-        BIZ_CASE --> FORECASTER
-        FORECASTER[Trend\nForecaster]
+    subgraph PHASE3 ["Phase 3 — Parallel Analysis"]
+        AI_APP("🤖 AI App Analyst") --> BIZ_CASE
+        IND_ANA("🏭 Industry Analyst") --> BIZ_CASE
+        BIZ_CASE("💰 Business Case Analyst") --> FORECASTER
+        FORECASTER("📈 Trend Forecaster")
     end
 
     FORECASTER --> LOGIC_VFY
 
-    subgraph PHASE4["🔎 Phase 4 — Post-Analysis Verification"]
-        LOGIC_VFY{Gate 3\nLogic Verifier}
+    subgraph PHASE4 ["Phase 4 — Verification"]
+        LOGIC_VFY{"Gate 3: Logic Verifier"}
         LOGIC_VFY -->|PASS| ALIGN2
-        LOGIC_VFY -->|REJECT ≤3x| ANALYSTS
-        ALIGN2{Gate 4\nAlignment Verifier\nMode 2}
-        ALIGN2 -->|REJECT ≤3x| ANALYSTS
+        LOGIC_VFY -.->|REJECT ≤3x| PHASE3
+        ALIGN2{"Gate 4: Alignment (Mode 2)"}
+        ALIGN2 -.->|REJECT ≤3x| PHASE3
     end
 
     ALIGN2 -->|PASS| REF_ING
-    ALIGN2 -->|PASS| WRITERS
+    ALIGN2 -->|PASS| ART_WRITER
+    ALIGN2 -->|PASS| CS_WRITER
+    ALIGN2 -->|PASS| EXEC_WRITER
 
-    subgraph PHASE45["📂 Phase 4.5 — Reference Ingestion"]
-        REF_ING[Reference\nIngester]
-        CLIENT_FILES[(Client Assets\nknowledge_files/)]
-        CLIENT_FILES --> REF_ING
+    subgraph PHASE45 ["Phase 4.5 — Context"]
+        REF_ING("📂 Reference Ingester")
+        CLIENT_FILES[("💼 Client Assets")] -.-> REF_ING
     end
 
     REF_ING --> INT_WRITER
 
-    subgraph PHASE5["✍️ Phase 5 — Writing Engine"]
-        WRITERS[ ]:::invisible
-        ART_WRITER[Article\nWriter]
-        CS_WRITER[Case Study\nWriter]
-        EXEC_WRITER[Executive Brief\nWriter]
-        INT_WRITER[Internal Article\nWriter]
-        WRITERS --> ART_WRITER
-        WRITERS --> CS_WRITER
-        WRITERS --> EXEC_WRITER
-        ART_WRITER --> EXEC_VFY
-        CS_WRITER --> EXEC_VFY
-        EXEC_WRITER --> EXEC_VFY
-        INT_WRITER --> EXEC_VFY
-        EXEC_VFY{Gate 5\nExecutive\nVerifier}
-        EXEC_VFY -->|REJECT ≤3x| EXEC_WRITER
+    subgraph PHASE5 ["Phase 5 — Writing Output"]
+        ART_WRITER("📰 Article Writer") --> EXEC_VFY
+        CS_WRITER("🔍 Case Study Writer") --> EXEC_VFY
+        EXEC_WRITER("👔 Executive Writer") --> EXEC_VFY
+        INT_WRITER("🏢 Internal Writer") --> EXEC_VFY
+        EXEC_VFY{"Gate 5: Exec Verifier"}
+        EXEC_VFY -.->|REJECT ≤3x| EXEC_WRITER
     end
 
     EXEC_VFY -->|PASS| COH_CHECK
 
-    subgraph PHASE55["🔀 Phase 5.5 — Coherence Check"]
-        COH_CHECK{Gate 6\nWriting Coherence\nChecker}
-        COH_CHECK -->|REJECT ≤3x| ART_WRITER
+    subgraph PHASE55 ["Phase 5.5 — Coherence"]
+        COH_CHECK{"Gate 6: Coherence Checker"}
+        COH_CHECK -.->|REJECT ≤3x| ART_WRITER
     end
 
     COH_CHECK -->|PASS| GRAPHICS
 
-    subgraph PHASE6["🎨 Phase 6 — Enhancement & Editorial"]
-        GRAPHICS[Graphics\nCreator]
-        GRAPHICS --> ART_VFY
-        ART_VFY{Gate 7\nArticle Verifier\nFact-check + Banned Phrases}
-        ART_VFY -->|REJECT ≤3x| ART_WRITER
+    subgraph PHASE6 ["Phase 6 — Enhancement"]
+        GRAPHICS("🎨 Graphics Creator") --> ART_VFY
+        ART_VFY{"Gate 7: Article Verifier"}
+        ART_VFY -.->|REJECT ≤3x| ART_WRITER
         ART_VFY -->|PASS| PLAG_CHECK
-        PLAG_CHECK{Gate 8\nPlagiarism\nChecker}
-        PLAG_CHECK -->|REJECT ≤3x| ART_WRITER
+        PLAG_CHECK{"Gate 8: Plag. Checker"}
+        PLAG_CHECK -.->|REJECT ≤3x| ART_WRITER
     end
 
     PLAG_CHECK -->|PASS| FINAL_REV
 
-    subgraph PHASE7["🏁 Phase 7 — Final Delivery"]
-        FINAL_REV{Gate 9\nFinal Reviewer\nGrade A+–F}
-        FINAL_REV -->|REJECT ≤3x| PHASE5
+    subgraph PHASE7 ["Phase 7 — Delivery"]
+        FINAL_REV{"Gate 9: Final Review (A+)"}
+        FINAL_REV -.->|REJECT ≤3x| PHASE5
         FINAL_REV -->|PASS| PANDOC
-        PANDOC[Pandoc Conversion\nHTML + DOCX]
-        PANDOC --> PDF_GEN
-        PDF_GEN[PDF Generator\nChrome Headless]
-        PDF_GEN --> LOGGER_W
-        LOGGER_W[Article Logger\nWRITE mode]
+        PANDOC("⚙️ Pandoc Conversion") --> PDF_GEN
+        PDF_GEN("🖨️ PDF Generator") --> PDF_VFY
+        PDF_VFY{"Gate 10: PDF Verifier"}
+        PDF_VFY -.->|FAIL ≤3x| PDF_GEN
+        PDF_VFY -->|PASS| LOGGER_W
+        LOGGER_W("💾 Article Logger (WRITE)")
     end
 
     LOGGER_W --> OUTPUTS
 
-    subgraph OUTPUTS["📁 Outputs — Articles/YYYY/MM/DD_Topic_N/"]
-        OUT_ART[article.md/.html/.docx]
-        OUT_CS[case_study.md/.html/.docx]
-        OUT_EXEC[executive_content.md/.html/.docx]
-        OUT_INT[internal_article.md/.html/.docx/.pdf]
+    subgraph OUTPUTS ["🎉 Final Output Artifacts"]
+        direction LR
+        OUT_ART[/"📄 article.*"/]
+        OUT_CS[/"📄 case_study.*"/]
+        OUT_EXEC[/"📄 executive.*"/]
+        OUT_INT[/"📄 internal.*"/]
     end
-
-    classDef invisible fill:none,stroke:none
-    classDef gate fill:#ff9900,stroke:#cc7700,color:#000
-    class SRC_VFY,ALIGN1,LOGIC_VFY,ALIGN2,EXEC_VFY,COH_CHECK,ART_VFY,PLAG_CHECK,FINAL_REV gate
 ```
 
 ---
@@ -237,25 +220,24 @@ flowchart TD
 | 21 | ✅ `aibe_article_verifier` | 6 | **Gate 7** |
 | 22 | 🔏 `aibe_plagiarism_checker` | 6 | **Gate 8** |
 | 23 | 🏁 `aibe_final_reviewer` | 7 | **Gate 9** |
-| 24 | 🧭 `aibe_article_logger` (WRITE) | 7 | Memory |
-| 25 | 🖨️ `aibe_pdf_generator` | Standalone | Design |
+| 24 | 🖨️ `aibe_pdf_generator` | 7 | Design |
+| 25 | ✅ `aibe_pdf_verifier` | 7 | **Gate 10** |
+| — | 🧭 `aibe_article_logger` (WRITE) | 7 | Memory |
 
 ---
 
 ## 🎨 PDF Generator
 
-`aibe_pdf_generator` is a standalone design skill invoked after final review. It produces a publication-quality PDF directly from the article markdown — distinct from the Pandoc HTML/DOCX conversions.
+`aibe_pdf_generator` is invoked in Phase 7 after final review. It produces a publication-quality PDF directly from the article markdown — distinct from the Pandoc HTML/DOCX conversions. Output is verified by `aibe_pdf_verifier` (Gate 10) before the pipeline closes.
 
 **How it works:**
 1. Parses the approved `internal_article.md` (or any output)
-2. Builds a fully custom-styled HTML document — cover page, stat strips, pull-quotes, data table for Application by Function, numbered watch signals, numbered next steps, and a clean reference page
-3. Renders to PDF via **Chrome headless** (`--headless=new --print-to-pdf`)
+2. Builds a fully custom-styled HTML document using [`templates/aibe_editorial.html`](templates/aibe_editorial.html) and [`templates/aibe_editorial.css`](templates/aibe_editorial.css) — cover page, stat strips, pull-quotes, data table for Application by Function, numbered watch signals, numbered next steps, and a clean reference page
+3. Renders to PDF via **Chrome headless** (`--headless=new --print-to-pdf`) with an 8-second virtual time budget for Mermaid.js chart rendering. Falls back to xelatex if Chrome is not available (charts render as code blocks; styled HTML becomes the print-ready substitute)
 
 **Cover page includes:** Article title, key statistics from the research, pipeline metadata, and internal classification banner.
 
-**Body features:** Dark navy brand colour (`#1e3a5f`), left-bordered section headings, stat strip tables, failure/warning callout boxes, the Application by Function data table, and full APA reference list.
-
-**Template:** [`templates/aibe_pdf_style.css`](templates/aibe_pdf_style.css) — base styles extended by inline CSS in the generated HTML.
+**Body features:** Dark navy brand colour (`#0F2044`), gold decorative rule (`#B58B35`), left-bordered section headings, stat strip tables, failure/warning callout boxes, the Application by Function data table, and full APA reference list.
 
 ---
 
@@ -291,6 +273,8 @@ Articles/
                 ├── article_verification_report.md
                 ├── plagiarism_checker_report.md
                 ├── final_review_report.md
+                ├── pdf_generation_report.md
+                ├── pdf_verification_report.md
                 └── article_log_confirmation.md
 
 history_log/
@@ -301,7 +285,9 @@ knowledge_files/
     └── (strategy docs, AI audits, vendor contracts, etc.)
 
 templates/
-└── aibe_pdf_style.css             ← Base PDF stylesheet
+├── aibe_editorial.css             ← Primary editorial stylesheet
+├── aibe_editorial.html            ← Pandoc HTML template (Mermaid-compatible)
+└── aibe_pdf_style.css             ← Legacy PDF stylesheet
 ```
 
 ---
@@ -370,7 +356,7 @@ Articles/YYYY/MM/DD_[Topic]_N/outputs/
 | Pandoc | HTML + DOCX export | `brew install pandoc` |
 | Google Chrome | PDF generation (headless) | [Download](https://www.google.com/chrome/) |
 
-Chrome is required for the PDF generator skill. The pipeline will skip PDF generation if Chrome is not found at `/Applications/Google Chrome.app`.
+Chrome is required for Mermaid.js chart rendering in PDFs. Without it, xelatex is used as fallback (charts render as code blocks) and styled HTML becomes the print-ready substitute.
 
 ---
 
@@ -394,9 +380,9 @@ This log is read at the start of every new run, ensuring the pipeline never repe
 | Metric | Result |
 |--------|--------|
 | 📅 Date | 20 March 2026 |
-| 🔎 Sources gathered | 27 (16 Tier 1) |
-| 🚦 Gates passed first attempt | 9 / 9 |
+| 🔎 Sources gathered | 30 |
+| 🚦 Gates passed first attempt | 10 / 10 |
 | 🔁 Total retries | 0 |
-| 📝 Body word count | ~870 words |
-| 🏆 Quality grade | **A** (97%) |
+| 📝 Body word count | ~870 words (article); ~1,600 words (internal article) |
+| 🏆 Quality grade | **A** (92%) |
 | 📄 Outputs produced | MD · HTML · DOCX · PDF |

@@ -63,7 +63,7 @@ Append to `history_log/aibe_article_history_log.md`:
 
 **Topic**: [Research prompt summary — 1 sentence]
 **Folder**: [Article folder path]
-**Outputs**: article.md, case_study.md, executive_content.md
+**Outputs**: article.md, case_study.md, executive_content.md, internal_article.md
 
 ### Core Thesis
 [1–2 sentences: the central argument of this article]
@@ -115,6 +115,7 @@ Append to `history_log/aibe_article_history_log.md`:
 | 7 | aibe_article_verifier | APPROVED | 0 |
 | 8 | aibe_plagiarism_checker | APPROVED | 0 |
 | 9 | aibe_final_reviewer | APPROVED | 0 |
+| 10 | aibe_pdf_verifier | PASS | 0 |
 
 **Calibration Signals**
 [Any skills that consistently flagged the same issues, required multiple retries, or showed calibration drift]
