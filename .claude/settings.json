@@ -20,7 +20,8 @@
       "Bash(while read:*)",
       "Bash(do touch:*)",
       "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate README.md)",
-      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate \"Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article.pdf\")"
+      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate \"Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs/internal_article.pdf\")",
+      "Bash(mdls -name kMDItemFSCreationDate -name kMDItemFSContentChangeDate . Articles Articles/2026/03/20_Intelligent_Automation_Wins_1/outputs .agents/skills)"
     ]
   }
 }
